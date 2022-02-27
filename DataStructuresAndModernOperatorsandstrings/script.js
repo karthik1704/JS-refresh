@@ -4,6 +4,84 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+//////////////////////////////////////////////////
+// Strings
+
+// Part 2
+const airline = 'TAP Air Portugal';
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalizatin in name
+const passenger = 'jOnAS';
+
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// comparing Mail
+
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@jonas.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+const normalizedEmail = loginEmail.toLocaleLowerCase().trim();
+
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+// Replacing 
+
+const priceGB = '288,97€';
+const priceUS =  priceGB.replace('€', '$').replace(',','.');
+console.log(priceUS);
+
+/*
+// Part 1
+const airline = 'TAP Air Portugal';
+
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal')); // case-sentive
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat');
+  else console.log('You got lucky');
+};
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('jonas')); // this is how js convert string to string object (behind) 
+console.log( typeof new String('jonas')); 
+console.log( typeof new String('jonas').slice(1)); // string object methods returns primitive (string) 
+*/
+
 // Data needed for first part of the section
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +134,6 @@ const restaurant = {
     console.log(otherIngredient);
   },
 };
-
 
 /*
 
@@ -627,5 +704,42 @@ printGoals(...game.scored);
 const winningTeam = (team1 < team2 && 'Team 1 wins') || 'Team2 wins';
 
 console.log(winningTeam);
+
+
+
+///////////////////////////////////
+// Challenge #3
+
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '� Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '� Substitution'],
+  [64, '� Yellow card'],
+  [69, '� Red card'],
+  [70, '� Substitution'],
+  [72, '� Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '� Yellow card'],
+]);
+
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+gameEvents.delete(64);
+console.log(gameEvents);
+
+console.log(`An event happend on average,  every ${90 / gameEvents.size} min`);
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(
+  `An event happend on average,  every ${time / gameEvents.size} min`
+);
+
+for (const [min, event] of gameEvents) {
+  const half = (min <= 45 && 'First half') || 'Second half';
+  console.log(`[${half}] ${min}: ${event}`);
+}
 
 */
