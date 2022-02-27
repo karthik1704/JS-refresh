@@ -57,6 +57,9 @@ const restaurant = {
   },
 };
 
+
+/*
+
 ///////////////////////////////////////////////////////
 // MAPS (Data structure) (ES6)
 // key value pair
@@ -80,7 +83,7 @@ console.log(rest.get(1));
 
 const time = 8;
 
- console.log( rest.get(time > rest.get('open') && time < rest.get('close')));
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
 
 console.log(rest.has('categories'));
 rest.delete(2);
@@ -95,17 +98,54 @@ console.log(rest.size);
 // console.log(rest.get([1,2]));
 
 // this work  , because stack points to same  heap  memory
-const arr = [1,2]
-rest.set(arr, 'Test')
+const arr = [1, 2];
+rest.set(arr, 'Test');
 console.log(rest.get(arr));
 
-
-rest.set(document.querySelector('h1'), "heading")
+rest.set(document.querySelector('h1'), 'heading');
 
 console.log(rest);
 console.log(rest.get(document.querySelector('h1')));
 
-/*
+// Populating Map without set method
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'try again'],
+]);
+
+
+// Convert Object to Map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Map Iteration
+
+console.log(question.get('question'));
+for (const [key, value] of question){
+  if(typeof key === 'number'){
+    console.log(`Answer ${key }: ${value}`);
+  }
+}
+
+// const answer = Number(prompt('Your Answer?'));
+ const answer = 3;
+
+console.log(question.get(answer === question.get('correct')));
+
+// conver Map to Array
+console.log([...question])
+
+console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
+
+
 ///////////////////////////////////////////////////////
 // SETS (Data structure) (ES6)
 // Unique values , no dublicates
