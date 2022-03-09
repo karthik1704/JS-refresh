@@ -294,7 +294,8 @@ class App {
     });
 
     // using the Public interface
-    // workout.click();
+    workout.click();
+    console.log(workout);
   }
 
   _setLocalStorage() {
@@ -306,7 +307,28 @@ class App {
 
     if (!data) return;
 
-    this.#workouts = data;
+    const prototypeLinkedData = data.map((workout) => {
+      const { id, coords, distance, duration, date, clicks } = workout;
+      if (workout.type === 'running') {
+        const obj = new Running(coords, distance, duration, workout.cadance);
+        obj.clicks = clicks;
+        return obj;
+      }
+      if (workout.type === 'cycling') {
+        const obj = new Cycling(
+          coords,
+          distance,
+          duration,
+          workout.elevationGain
+        );
+        obj.id = id;
+        obj.date = date;
+        obj.clicks = clicks;
+        return obj;
+      }
+    });
+    console.log(prototypeLinkedData);
+    this.#workouts = prototypeLinkedData;
 
     this.#workouts.forEach((workout) => {
       this._renderWorkout(workout);
