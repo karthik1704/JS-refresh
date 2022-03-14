@@ -1,4 +1,3 @@
-/*
 // Import Module
 // import {
 //   addToCart,
@@ -24,7 +23,7 @@ add('apples', 4);
 
 console.log(cart);
 
-
+/*
 ///////////////////////////////////
 // Top-Level Await
 // Only works in modules
@@ -54,8 +53,9 @@ lastPost.then(last=> console.log(last))
 const lastPost2 = await getLastPost()
 console.log(lastPost2);
 
+*/
 
-
+/*
 // Module Pattern
 
 const ShoppingCart2 = (function () {
@@ -113,3 +113,56 @@ const {addToCart} = require('./shoppingCart.js')
 
 */
 
+// import  cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
+import cloneDeep from 'lodash-es';
+
+const state = {
+  cart: [
+    {
+      product: 'Bread',
+      quantity: 5,
+    },
+    {
+      product: 'Pizza',
+      quantity: 5,
+    },
+  ],
+  user: {
+    loggedIn: true,
+  },
+};
+
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+console.log(stateDeepClone);
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+class Person {
+  greeting = 'hey';
+
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+
+const jonas = new Person('Jonas');
+
+console.log('Jonas' ?? null);
+
+console.log(cart.find((el) => el.quantity >= 2));
+
+Promise.resolve('TEST').then((x) => console.log(x));
+
+import 'core-js/stable';
+// import 'core-js/stable/array/find';
+
+// Polifilling async functions
+import 'regenerator-runtime/runtime'
